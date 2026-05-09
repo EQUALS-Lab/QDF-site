@@ -1,0 +1,173 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+  color: #17212b;
+}
+
+.publication-header {
+  background: linear-gradient(180deg, #f7fbfc 0%, #ffffff 86%);
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  line-height: 1.08;
+}
+
+.title-emphasis {
+  color: #0e6470;
+}
+
+.publication-affiliation {
+  color: #3f4c58;
+  font-family: 'Google Sans', sans-serif;
+  margin-top: 0.25rem;
+}
+
+.publication-tags {
+  margin-top: 1.25rem;
+}
+
+.publication-tags .tag {
+  border: 1px solid #d5e1e5;
+  color: #25424a;
+  margin: 0.2rem;
+}
+
+.link-block a {
+  margin: 0.35rem 0.15rem;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.publication-banner {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 760px;
+}
+
+.publication-banner img,
+.figure-panel img {
+  width: 100%;
+  border: 1px solid #d6e0e5;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.publication-banner img {
+  max-height: 760px;
+  object-fit: contain;
+}
+
+.teaser-caption {
+  color: #31424d;
+  margin-top: 1.25rem;
+}
+
+.figure-caption {
+  color: #586571;
+  font-size: 0.95rem;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1.35rem 0;
+}
+
+.feature-list span {
+  border: 1px solid #cad9df;
+  border-radius: 999px;
+  color: #24444d;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.92rem;
+  padding: 0.35rem 0.7rem;
+}
+
+.result-card {
+  height: 100%;
+  min-height: 150px;
+  border: 1px solid #d6e0e5;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  background: #fff;
+}
+
+.metric {
+  color: #0e6470;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.metric-label {
+  color: #3f4c58;
+  margin-top: 0.75rem;
+}
+
+.result-figures {
+  margin-top: 1.25rem;
+}
+
+.author-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 860px;
+}
+
+.author-grid-header {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.author-card {
+  background: #fff;
+  border: 1px solid #d6e0e5;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.author-card img {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.author-card a {
+  color: hsl(204, 86%, 36%) !important;
+}
+
+.author-card a:hover {
+  text-decoration: underline;
+}
+
+pre {
+  border-radius: 8px;
+  white-space: pre-wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .publication-title {
+    font-size: 2rem !important;
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .publication-banner img {
+    max-height: 620px;
+  }
+}

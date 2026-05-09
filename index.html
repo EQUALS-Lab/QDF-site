@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Calibration data-based fingerprinting of quantum cloud hardware using XGBoost and IBM Quantum calibration metrics.">
+  <meta name="keywords" content="quantum device fingerprinting, quantum cloud security, calibration data, XGBoost, IBM Quantum, NISQ">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who Ran My Circuit: Calibration Data-Based Fingerprinting of Quantum Cloud Hardware</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/quantum-device-fingerprinting/site.css">
+</head>
+<body>
+<section class="hero publication-header">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span class="title-emphasis">Who Ran My Circuit</span>: Calibration Data-Based Fingerprinting of Quantum Cloud Hardware</h1>
+
+          <div class="author-grid author-grid-header">
+            <div class="author-card">
+              <img src="./static/quantum-device-fingerprinting/wilson.jpg" alt="Wilson Patterson">
+              <h3 class="title is-5">Wilson Patterson</h3>
+            </div>
+            <div class="author-card">
+              <img src="./static/quantum-device-fingerprinting/madan.png" alt="Madan Baduwal">
+              <h3 class="title is-5">Madan Baduwal</h3>
+            </div>
+            <div class="author-card">
+              <img src="./static/quantum-device-fingerprinting/vini.png" alt="Vini Chaudhary">
+              <h3 class="title is-5">Vini Chaudhary</h3>
+            </div>
+          </div>
+
+          <div class="is-size-5 publication-affiliation">
+            Department of Computer Science and Engineering, Mississippi State University
+          </div>
+
+          <div class="publication-tags">
+            <span class="tag is-light">Quantum Device Fingerprinting</span>
+            <span class="tag is-light">Quantum Cloud Security</span>
+            <span class="tag is-light">Calibration Data</span>
+            <span class="tag is-light">XGBoost</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="./static/quantum-device-fingerprinting/paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              
+              <span class="link-block">
+                <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-google-scholar"></i></span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/madanbaduwal/quantum-device-fingerprinting" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/madanbaduwal/quantum-device-fingerprinting/tree/main/data" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="far fa-folder-open"></i></span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image publication-banner">
+        <img src="./static/quantum-device-fingerprinting/qdf-overview.png" alt="Overview of the proposed quantum device fingerprinting framework">
+      </figure>
+      <h2 class="subtitle has-text-centered teaser-caption">
+        A calibration-driven framework trains an XGBoost classifier on historical IBM Quantum metrics to verify which QPU executed a submitted circuit.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Cloud-based access to quantum hardware is now the dominant execution model in the NISQ era, but multi-tenant quantum cloud platforms give users limited transparency into which physical processor executed their circuits. This creates security and trust concerns when providers redirect workloads, expose shared hardware to crosstalk, or operate heterogeneous devices with different calibration characteristics.
+          </p>
+          <p>
+            This work proposes a calibration data-based quantum device fingerprinting framework that verifies cloud hardware without requiring additional circuit execution or measurement overhead. Historical IBM Quantum calibration records are transformed into per-qubit feature vectors and used to train an XGBoost classifier that learns distinctive device-specific signatures across multiple generations of quantum processors.
+          </p>
+          <p>
+            The proposed approach achieves 99.03% accuracy for binary identification of two IBM Eagle processors and 82.95% accuracy in a more challenging four-class setting across Eagle and Heron processors, demonstrating practical device identification from publicly available calibration metrics.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-light" id="method">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Method</h2>
+        <div class="content has-text-justified">
+          <p>
+            The framework constructs quantum hardware fingerprints from historical calibration metrics collected through IBM's Qiskit Runtime API. Each qubit is represented by a composite feature vector including frequency when available, coherence times, readout error, Pauli-X gate error, and two-qubit gate error statistics. These features capture both single-qubit behavior and interaction-level noise patterns.
+          </p>
+          <p>
+            An XGBoost tree-ensemble classifier learns nonlinear relationships across these calibration features and predicts the corresponding backend identity for unseen calibration observations. This static calibration-driven design avoids the runtime cost and measurement overhead of circuit-based fingerprinting techniques.
+          </p>
+        </div>
+        <figure class="image figure-panel">
+          <img src="./static/quantum-device-fingerprinting/Architecture.png" alt="Architecture of the calibration data-based quantum device fingerprinting pipeline">
+        </figure>
+        <p class="has-text-centered figure-caption">
+          Architecture of the calibration-driven fingerprinting pipeline, from historical IBM Quantum calibration data to backend identity prediction.
+        </p>
+        <div class="feature-list">
+          <span>frequency</span>
+          <span>T1</span>
+          <span>T2</span>
+          <span>readout error</span>
+          <span>x error</span>
+          <span>2q min</span>
+          <span>2q max</span>
+          <span>2q mean</span>
+          <span>2q std</span>
+        </div>
+        <figure class="image figure-panel">
+          <img src="./static/quantum-device-fingerprinting/feature-importance.png" alt="Feature importance for binary and multi-class quantum device fingerprinting models">
+        </figure>
+        <p class="has-text-centered figure-caption">
+          Frequency dominates the two-class Eagle model, while two-qubit error statistics and coherence features drive the frequency-free multi-class model.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Results</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="result-card">
+          <p class="metric">99.03%</p>
+          <p class="metric-label">Binary accuracy for IBM Brisbane vs. IBM Sherbrooke using five calibration features</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="result-card">
+          <p class="metric">82.95%</p>
+          <p class="metric-label">Four-class accuracy across one Eagle and three Heron QPUs without frequency</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="result-card">
+          <p class="metric">0</p>
+          <p class="metric-label">Additional circuit executions required to collect fingerprinting measurements</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-multiline result-figures">
+      <div class="column is-half">
+        <figure class="image figure-panel">
+          <img src="./static/quantum-device-fingerprinting/binary-confusion.png" alt="Binary confusion matrix for IBM Brisbane and IBM Sherbrooke device identification">
+        </figure>
+        <p class="figure-caption">Binary backend identification misclassifies only 144 of 14,783 test samples.</p>
+      </div>
+      <div class="column is-half">
+        <figure class="image figure-panel">
+          <img src="./static/quantum-device-fingerprinting/multiclass-confusion.png" alt="Four-class confusion matrix for IBM Brisbane, Fez, Torino, and Marrakesh device identification">
+        </figure>
+        <p class="figure-caption">Multi-class identification remains effective when frequency is unavailable, though Heron devices are harder to separate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+    <pre><code>@inproceedings{patterson2026who,
+  author={Patterson, Wilson and Baduwal, Madan and Chaudhary, Vini},
+  title={{Who Ran My Circuit}: Calibration Data-Based Fingerprinting of Quantum Cloud Hardware},
+  booktitle={To appear},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+</body>
+</html>
